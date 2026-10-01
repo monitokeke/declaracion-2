@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi novia? ❤️</title>
+    <style>
+        /* Fondo degradado romántico y configuración general */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffe6e6 0%, #ffb3c1 100%);
+            font-family: 'Poppins', Arial, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Contenedor principal con efecto de tarjeta de regalo */
+        .contenedor {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            max-width: 90%;
+            width: 400px;
+        }
+
+        /* Imagen/GIF decorativo */
+        .gif-decorativo {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* Estilo estético de los botones */
+        .botones-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            height: 60px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 50px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #si {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #si:hover {
+            background-color: #ff758f;
+            transform: scale(1.05);
+        }
+
+        #no {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+        }
+
+        /* Corazones animados cayendo de fondo */
+        .corazon {
+            position: absolute;
+            color: #ffb3c1;
+            font-size: 20px;
+            position: absolute;
+            top: -20px;
+            pointer-events: none;
+            animation: caer linear forwards;
+            opacity: 0.7;
+        }
+
+        @keyframes caer {
+            to {
+                transform: translateY(105vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animación de fondo (Lluvia de corazones) -->
+    <script>
+        function crearCorazon() {
+            const corazon = document.createElement('div');
+            corazon.classList.add('corazon');
+            corazon.innerText = '❤️';
+            corazon.style.left = Math.random() * 100 + 'vw';
+            corazon.style.animationDuration = Math.random() * 3 + 2 + 's';
+            corazon.style.fontSize = Math.random() * 15 + 15 + 'px';
+            document.body.appendChild(corazon);
+            setTimeout(() => { corazon.remove(); }, 5000);
+        }
+        setInterval(crearCorazon, 300);
+    </script>
+
+    <!-- Tarjeta Interactiva Central -->
+    <div class="contenedor">
+        <!-- GIF de Osito tierno inicial -->
+        <img id="gif" class="gif-decorativo" src="https://giphy.com" alt="Osito tierno">
+        
+        <h1 id="titulo">¿Quieres ser mi novia? ❤️</h1>
+        
+        <div class="botones-container">
+            <button id="si" onclick="aceptar()">Sí</button>
+            <button id="no" onmouseover="moverBotonNo()" onclick="moverBotonNo()">No</button>
+        </div>
+    </div>
+
+    <script>
+        // Función para mover el botón NO caóticamente (Soporta PC y Celular)
+        function moverBotonNo() {
+            const botonNo = document.getElementById('no');
+            const contenedor = document.querySelector('.botones-container');
+            
+            // Rango seguro de movimiento dentro de la pantalla para evitar que se salga
+            const padding = 20;
+            const xMax = window.innerWidth - botonNo.offsetWidth - padding;
+            const yMax = window.innerHeight - botonNo.offsetHeight - padding;
+            
+            // Cambiar a posicion fija en toda la pantalla una vez que se activa el juego
+            botonNo.style.position = 'fixed';
+            
+            const nuevoX = Math.random() * xMax;
+            const nuevoY = Math.random() * yMax;
+            
+            botonNo.style.left = nuevoX + 'px';
+            botonNo.style.top = nuevoY + 'px';
+        }
+
+        // Función cuando le dan clic al SÍ
+        function aceptar() {
+            // Cambia el título
+            document.getElementById('titulo').innerHTML = '¡Siii! Sabía que dirías que sí 🥰<br><span style="font-size: 18px; font-weight: normal; color: #555;">¡Te amo mucho! ❤️</span>';
+            
+            // Cambia el GIF por uno de celebración feliz
+            document.getElementById('gif').src = 'https://giphy.com';
+            
+            // Oculta por completo los botones
+            document.getElementById('si').style.display = 'none';
+            document.getElementById('no').style.display = 'none';
+            
+            // Intensifica la lluvia de corazones por la felicidad
+            setInterval(crearCorazon, 50);
+        }
+    </script>
+</body>
+</html>
