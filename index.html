@@ -34,8 +34,8 @@
 
         /* Imagen/GIF decorativo */
         .gif-decorativo {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             object-fit: contain;
             margin-bottom: 20px;
             border-radius: 15px;
@@ -94,7 +94,6 @@
             position: absolute;
             color: #ffb3c1;
             font-size: 20px;
-            position: absolute;
             top: -20px;
             pointer-events: none;
             animation: caer linear forwards;
@@ -127,8 +126,8 @@
 
     <!-- Tarjeta Interactiva Central -->
     <div class="contenedor">
-        <!-- GIF de Osito tierno inicial -->
-        <img id="gif" class="gif-decorativo" src="https://giphy.com" alt="Osito tierno">
+        <!-- GIF de Osito tierno inicial (Enlace arreglado) -->
+        <img id="gif" class="gif-decorativo" src="https://tenor.com" alt="Osito tierno">
         
         <h1 id="titulo">¿Quieres ser mi novia? ❤️</h1>
         
@@ -139,17 +138,13 @@
     </div>
 
     <script>
-        // Función para mover el botón NO caóticamente (Soporta PC y Celular)
         function moverBotonNo() {
             const botonNo = document.getElementById('no');
-            const contenedor = document.querySelector('.botones-container');
             
-            // Rango seguro de movimiento dentro de la pantalla para evitar que se salga
             const padding = 20;
             const xMax = window.innerWidth - botonNo.offsetWidth - padding;
             const yMax = window.innerHeight - botonNo.offsetHeight - padding;
             
-            // Cambiar a posicion fija en toda la pantalla una vez que se activa el juego
             botonNo.style.position = 'fixed';
             
             const nuevoX = Math.random() * xMax;
@@ -159,19 +154,15 @@
             botonNo.style.top = nuevoY + 'px';
         }
 
-        // Función cuando le dan clic al SÍ
         function aceptar() {
-            // Cambia el título
             document.getElementById('titulo').innerHTML = '¡Siii! Sabía que dirías que sí 🥰<br><span style="font-size: 18px; font-weight: normal; color: #555;">¡Te amo mucho! ❤️</span>';
             
-            // Cambia el GIF por uno de celebración feliz
-            document.getElementById('gif').src = 'https://giphy.com';
+            /* GIF de celebración feliz (Enlace arreglado) */
+            document.getElementById('gif').src = 'https://tenor.com';
             
-            // Oculta por completo los botones
             document.getElementById('si').style.display = 'none';
             document.getElementById('no').style.display = 'none';
             
-            // Intensifica la lluvia de corazones por la felicidad
             setInterval(crearCorazon, 50);
         }
     </script>
